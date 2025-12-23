@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Welt – Indizes Kurzliste</title>
+
+  <style>
+    :root{
+      --bg: #cbf1f0;
+      --green: #618d5d;
+      --muted: rgba(0,0,0,0.55);
+      --border: #000;
+      --rowBorder: rgba(0,0,0,0.12);
+    }
+
+    *{ box-sizing: border-box; }
+
+    html, body{
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: #000;
+    }
+
+    /* “ca. 8cm” Rand – robust auf TV */
+    .stage{
+      width: 100vw;
+      height: 100vh;
+      padding: clamp(80px, 6vh, 320px);
+      display: grid;
+      place-items: center;
+    }
+
+    .card{
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      padding: clamp(26px, 3.2vh, 64px);
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: clamp(16px, 2vh, 28px);
+    }
+
+    .title{
+      font-size: clamp(56px, 4.2vh, 96px);
+      font-weight: 950;
+      margin: 0;
+      color: #000;
+      letter-spacing: 0.01em;
+    }
+
+    .subtitle{
+      margin: 0;
+      font-size: clamp(18px, 1.6vh, 28px);
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .table{
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--rowBorder);
+      border-radius: 16px;
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: #fff;
+    }
+
+    .thead{
+      display: grid;
+      grid-template-columns: 2.2fr 1.1fr 1fr;
+      gap: 0;
+      padding: clamp(14px, 1.6vh, 22px);
+      border-bottom: 1px solid var(--rowBorder);
+      background: rgba(0,0,0,0.02);
+    }
+
+    .th{
+      font-size: clamp(16px, 1.5vh, 22px);
+      font-weight: 900;
+      color: rgba(0,0,0,0.7);
+    }
+
+    .tbody{
+      display: grid;
+      grid-auto-rows: 1fr;
+    }
+
+    .row{
+      display: grid;
+      grid-template-columns: 2.2fr 1.1fr 1fr;
+      gap: 0;
+      padding: clamp(14px, 1.8vh, 26px);
+      border-bottom: 1px solid var(--rowBorder);
+      align-items: center;
+    }
+
+    .row:last-child{ border-bottom: none; }
+
+    .left{
+      display: grid;
+      gap: 6px;
+      padding-right: clamp(10px, 1.2vh, 18px);
+    }
+
+    .name{
+      font-size: clamp(26px, 2.4vh, 40px);
+      font-weight: 950;
+      color: #000;
+      line-height: 1.1;
+    }
+
+    .meta{
+      font-size: clamp(14px, 1.3vh, 20px);
+      font-weight: 800;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+
+    /* Preis/Änderung Widget-Box */
+    .quoteBox{
+      width: 100%;
+      height: clamp(90px, 9vh, 150px);
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* Mini-Chart Widget-Box */
+    .chartBox{
+      width: 100%;
+      height: clamp(120px, 12vh, 200px);
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .source{
+      position: absolute;
+      right: clamp(18px, 1.8vh, 28px);
+      bottom: clamp(14px, 1.6vh, 22px);
+      font-size: clamp(12px, 1.05vh, 16px);
+      color: rgba(0,0,0,0.45);
+      font-weight: 700;
+      background: rgba(255,255,255,0.75);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* TradingView container helpers */
+    .tradingview-widget-container{ width:100%; height:100%; }
+    .tradingview-widget-container__widget{ width:100%; height:100%; }
+
+    /* Optional: grüne Akzente */
+    .accent{
+      color: var(--green);
+      font-weight: 950;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stage">
+    <div class="card">
+      <h1 class="title">Welt</h1>
+      <p class="subtitle">Aktuelle Indizes (Kurzliste) · Stand: <span class="accent">Live</span></p>
+
+      <div class="table">
+        <div class="thead">
+          <div class="th">Wert</div>
+          <div class="th">akt. Kurs</div>
+          <div class="th">1 Jahr</div>
+        </div>
+
+        <div class="tbody">
+
+          <!-- Row 1: MSCI World -->
+          <div class="row">
+            <div class="left">
+              <div class="name">MSCI World</div>
+              <div class="meta">Weltweit · TradingView: <b>ICEUS:MWL1!</b> (Futures)</div>
+            </div>
+
+            <div class="quoteBox">
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {
+                  "symbol": "ICEUS:MWL1!",
+                  "width": "100%",
+                  "colorTheme": "light",
+                  "isTransparent": false,
+                  "locale": "de_DE"
+                }
+                </script>
+              </div>
+            </div>
+
+            <div class="chartBox">
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                {
+                  "symbol": "ICEUS:MWL1!",
+                  "width": "100%",
+                  "height": "100%",
+                  "locale": "de_DE",
+                  "dateRange": "1Y",
+                  "chartOnly": true,
+                  "noTimeScale": false,
+                  "colorTheme": "light",
+                  "isTransparent": false,
+                  "trendLineColor": "rgba(97, 141, 93, 1)",
+                  "underLineColor": "rgba(97, 141, 93, 0.22)",
+                  "underLineBottomColor": "rgba(97, 141, 93, 0)",
+                  "gridLineColor": "rgba(97, 141, 93, 0.12)"
+                }
+                </script>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2: FTSE All World -->
+          <div class="row">
+            <div class="left">
+              <div class="name">FTSE All World</div>
+              <div class="meta">Weltweit · TradingView: <b>FTSE:AW01</b></div>
+            </div>
+
+            <div class="quoteBox">
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {
+                  "symbol": "FTSE:AW01",
+                  "width": "100%",
+                  "colorTheme": "light",
+                  "isTransparent": false,
+                  "locale": "de_DE"
+                }
+                </script>
+              </div>
+            </div>
+
+            <div class="chartBox">
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                {
+                  "symbol": "FTSE:AW01",
+                  "width": "100%",
+                  "height": "100%",
+                  "locale": "de_DE",
+                  "dateRange": "1Y",
+                  "chartOnly": true,
+                  "noTimeScale": false,
+                  "colorTheme": "light",
+                  "isTransparent": false,
+                  "trendLineColor": "rgba(97, 141, 93, 1)",
+                  "underLineColor": "rgba(97, 141, 93, 0.22)",
+                  "underLineBottomColor": "rgba(97, 141, 93, 0)",
+                  "gridLineColor": "rgba(97, 141, 93, 0.12)"
+                }
+                </script>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3: STOXX Global 1800 (EUR) -->
+          <div class="row">
+            <div class="left">
+              <div class="name">STOXX Global 1800 (EUR)</div>
+              <div class="meta">EUR · TradingView: <b>STOXX:0WZ8</b></div>
+            </div>
+
+            <div class="quoteBox">
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {
+                  "symbol": "STOXX:0WZ8",
+                  "width": "100%",
+                  "colorTheme": "light",
+                  "isTransparent": false,
+                  "locale": "de_DE"
+                }
+                </script>
+              </div>
+            </div>
+
+            <div class="chartBox">
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                {
+                  "symbol": "STOXX:0WZ8",
+                  "width": "100%",
+                  "height": "100%",
+                  "locale": "de_DE",
+                  "dateRange": "1Y",
+                  "chartOnly": true,
+                  "noTimeScale": false,
+                  "colorTheme": "light",
+                  "isTransparent": false,
+                  "trendLineColor": "rgba(97, 141, 93, 1)",
+                  "underLineColor": "rgba(97, 141, 93, 0.22)",
+                  "underLineBottomColor": "rgba(97, 141, 93, 0)",
+                  "gridLineColor": "rgba(97, 141, 93, 0.12)"
+                }
+                </script>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 4: Dow Jones Global Titans 50 (über ETF) -->
+          <div class="row">
+            <div class="left">
+              <div class="name">Dow Jones Global Titans 50</div>
+              <div class="meta">Abbildung über ETF · TradingView: <b>XETR:EXI2</b></div>
+            </div>
+
+            <div class="quoteBox">
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {
+                  "symbol": "XETR:EXI2",
+                  "width": "100%",
+                  "colorTheme": "light",
+                  "isTransparent": false,
+                  "locale": "de_DE"
+                }
+                </script>
+              </div>
+            </div>
+
+            <div class="chartBox">
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                {
+                  "symbol": "XETR:EXI2",
+                  "width": "100%",
+                  "height": "100%",
+                  "locale": "de_DE",
+                  "dateRange": "1Y",
+                  "chartOnly": true,
+                  "noTimeScale": false,
+                  "colorTheme": "light",
+                  "isTransparent": false,
+                  "trendLineColor": "rgba(97, 141, 93, 1)",
+                  "underLineColor": "rgba(97, 141, 93, 0.22)",
+                  "underLineBottomColor": "rgba(97, 141, 93, 0)",
+                  "gridLineColor": "rgba(97, 141, 93, 0.12)"
+                }
+                </script>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="source">Quelle: TradingView · Anzeige ohne Gewähr</div>
+    </div>
+  </div>
+</body>
+</html>
